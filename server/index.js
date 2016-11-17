@@ -1,31 +1,27 @@
-const webpack = require('webpack');
+const ip = require('ip');
 const express = require('express');
-const path = require('path');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const devConfig = require('../webpack/webpack.dev.conf');
+const setup = require('./express');
+const port = process.env.PORT || 3000;
+const resolve = require('path').resolve;
 const app = express();
-const compiler = webpack(devConfig);
-const middleware = webpackDevMiddleware(compiler, {
-  noInfo: true,
+
+setup(app, {
+  outputPath: resolve(process.cwd(), 'dist'),
   publicPath: '/',
-  silent: true,
-  stats: 'errors-only',
 });
 
-app.use(middleware);
-app.use(webpackHotMiddleware(compiler));
+// Start app
+app.listen(port, (err) => {
+  if (err) {
+    console.error(err.message);
+    return false;
+  }
 
-const fs = middleware.fileSystem;
-
-app.get('*', (req, res) => {
-  fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
-    if (err) {
-      res.sendStatus(404);
-    } else {
-      res.send(file.toString());
-    }
-  });
+  const divider = '\n-----------------------------------';
+  console.log('Server started ✓');
+  console.log(`Access URLs:${divider}\n
+  Localhost: http://localhost:${port}
+        LAN: http://${ip.address()}:${port}
+  ${divider}
+  `);
 });
-
-app.listen(3000);

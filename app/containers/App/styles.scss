@@ -1,0 +1,25 @@
+$background-color: #f5f5f5;
+
+:global * {
+  box-sizing: border-box;
+}
+
+:global html,
+:global body {
+  height: 100%;
+  width: 100%;
+  background-color: $background-color;
+}
+
+:global body {
+  font-family: sans-serif, Arial;
+}
+
+:global body.fontLoaded {
+  font-family: 'Roboto', sans-serif, Arial;
+}
+
+:global #app {
+  min-height: 100%;
+  min-width: 100%;
+}

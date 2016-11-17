@@ -1,0 +1,4 @@
+{
+  "mp.containers.HomePage.hello": "Hola mundo!",
+  "mp.containers.NotFoundPage.header": "Pagina no encontrada."
+}

@@ -15,7 +15,7 @@ module.exports = require('./webpack.base.conf')({
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].chunk.js',
   },
-
+  loaders: [],
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

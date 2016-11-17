@@ -7,14 +7,7 @@ var APP_PATH = path.join(process.cwd(), 'app');
 var BUILD_PATH = path.join(process.cwd(), 'dist');
 
 module.exports = require('./webpack.base.conf')({
-  context: APP_PATH,
-  devtool: 'cheap-module-eval-source-map',
-  resolve: {
-    modules: ['app', 'node_modules'],
-    extensions: [
-      '.js',
-    ],
-  },
+  devtool: 'inline-source-map',
   entry: [
     'webpack-hot-middleware/client',
     'webpack/hot/only-dev-server',
@@ -28,7 +21,7 @@ module.exports = require('./webpack.base.conf')({
     publicPath: '/'
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
@@ -37,9 +30,9 @@ module.exports = require('./webpack.base.conf')({
       filename: 'index.html'
     })
   ],
-  preLoaders:[{
+  loaders: [{
     test: /\.js$/,
     exclude: /node_modules/,
     loader: 'eslint-loader'
-  }]
+  }],
 });

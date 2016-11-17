@@ -6,16 +6,29 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = (options) => ({
-  context: options.context,
+  resolve: {
+    modules: [
+      'app',
+      'node_modules'
+    ],
+    alias: {
+      MP: path.resolve(process.cwd(), 'app'),
+    },
+    extensions: [
+      '.js',
+    ],
+    mainFields: [
+      'browser',
+      'jsnext:main',
+      'main',
+    ],
+  },
   entry: options.entry,
   output: Object.assign({ // Compile into js/dist.js
     path: path.resolve(process.cwd(), 'dist'),
-    publicPath: './',
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].chunk.js',
+    publicPath: '',
   }, options.output), // Merge with env dependent settings
   module: {
-    preLoaders: options.preLoaders,
     loaders: [{
       test: /\.js?/,
       exclude: /node_modules/,
@@ -41,7 +54,10 @@ module.exports = (options) => ({
     }, {
       test: /\.html$/,
       loader: 'html-loader',
-    }],
+    }, {
+      test: /\.json$/,
+      loader: 'json-loader',
+    },].concat(options.loaders),
   },
   plugins: options.plugins.concat([
     new webpack.ProvidePlugin({
@@ -55,18 +71,5 @@ module.exports = (options) => ({
     }),
     new webpack.NamedModulesPlugin(),
   ]),
-  resolve: {
-    modules: ['app', 'node_modules'],
-    extensions: [
-      '',
-      '.js',
-    ],
-    mainFields: [
-      'browser',
-      'jsnext:main',
-      'main',
-    ],
-  },
   devtool: options.devtool,
-  target: 'web', // Make web variables accessible to webpack, e.g. window
 });
