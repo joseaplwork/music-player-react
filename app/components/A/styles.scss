@@ -1,0 +1,13 @@
+@import '~helpers/variables';
+
+.base {
+  color: $main-color;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color $global-transition-time;
+
+  &:hover {
+    text-decoration: underline;
+    color: transparentize($main-color, 0.3);
+  } 
+}

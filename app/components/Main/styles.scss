@@ -1,0 +1,16 @@
+@import '~helpers/variables';
+@import '~helpers/mixins';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px;
+  color: $body-text-color;
+  justify-content: center;
+  height: 100%;
+
+  @include desktop {
+    padding: 30px 50px;
+  }
+} 

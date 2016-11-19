@@ -1,0 +1,94 @@
+@import '~helpers/variables';
+@import '~helpers/mixins';
+
+$header-height: 65px;
+
+.header {
+  background-color: $header-bk-color;
+  position: absolute;
+  height: $header-height;
+  width: 100%;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  color: $header-text-color;
+  box-shadow: 0 0 8px rgba(0,0,0,.4);
+  animation: in 1s ease;
+
+  .wrapper {
+    display: flex;
+    width: 100%;
+
+    .logoPart {
+      max-width: 250px; 
+      display: flex;
+      align-items: center;
+
+      .currentPage {
+        display: none;
+
+        @include desktop {
+          display: block;
+          margin: 0 20px;
+        }
+      }
+    }
+
+    .searcherPart {
+      flex: 1;
+      position: relative;
+      margin: 0 20px;
+
+      .searchIcon {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 2;
+        width: 20px;
+        height: 20px;
+
+        @include desktop {
+          left: 25px;
+        }
+      }
+
+      .searchBar {
+        background-color: transparentize($white, 0.85);
+        transition: background-color 0.5s;
+        padding: 0 16px 0 40px;
+        height: 40px;
+        border: none;
+        border-radius: 3px;
+        width: 100%;
+        color: transparentize($white, 0.3);
+        font-size: 15px;
+        font-weight: 400;
+        outline: none;
+
+        &:focus {
+          background-color: transparentize($white, 0.65);
+          color: $white;
+        }
+
+        @include desktop {
+          padding: 0 16px 0 80px;
+        }
+      }
+
+      @include desktop {
+        margin: 0;
+      }
+    }
+  }
+}
+
+@keyframes in {
+  0% { 
+    opacity: 0;
+    transform: translate3d(0, -#{$header-height}, 0); 
+  }
+  100% { 
+    opacity: 1;
+    transform: translate3d(0, 0, 0); 
+  }
+}

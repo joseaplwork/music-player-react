@@ -6,17 +6,20 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { FormattedMessage } from 'react-intl';
-import { shape } from '../messages';
 import HomePage from '../index';
+import Presentation from 'MP/components/Presentation';
+import Main from 'MP/components/Main';
 
 describe('<HomePage />', () => {
-  it('should render the Home Page text', () => {
-    const renderedComponent = shallow(
-      <HomePage />
-    );
-    expect(renderedComponent.contains(
-      <h1>
-        <FormattedMessage {...shape.hello}/>
-      </h1>)).toEqual(true);
+  const renderedComponent = shallow(
+    <HomePage />
+  );
+
+  it('should render the Main component', () => {
+    expect(renderedComponent.find(Main).length).toEqual(1);
+  });
+
+  it('should render the Presentation component', () => {
+    expect(renderedComponent.find(Presentation).length).toEqual(1);
   });
 });

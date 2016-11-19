@@ -1,4 +1,7 @@
-$background-color: #f5f5f5;
+@import '~helpers/variables';
+@import '~helpers/mixins';
+
+@use postcss-normalize;
 
 :global * {
   box-sizing: border-box;
@@ -8,18 +11,28 @@ $background-color: #f5f5f5;
 :global body {
   height: 100%;
   width: 100%;
-  background-color: $background-color;
+  background-color: $app-bk-color;
+  font-size: $font-size-mobile;
+
+  @include desktop {
+    font-size: $font-size-desktop;
+  };
 }
 
 :global body {
-  font-family: sans-serif, Arial;
+  font-family: $local-font;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 :global body.fontLoaded {
-  font-family: 'Roboto', sans-serif, Arial;
+  font-family: $font-family;
 }
 
-:global #app {
-  min-height: 100%;
-  min-width: 100%;
+:global #app,
+:global #app > section {
+  height: 100%;
+  width: 100%;
 }
+

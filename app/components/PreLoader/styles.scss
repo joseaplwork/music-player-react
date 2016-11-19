@@ -1,0 +1,19 @@
+@import '~helpers/variables';
+
+.base {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background-color: $app-bk-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .svg {
+    width: 150px;
+    height: 150px;
+  }
+} 

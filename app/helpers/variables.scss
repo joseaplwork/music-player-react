@@ -1,0 +1,32 @@
+// Fonts
+$local-font: sans-serif, Arial;
+$font-family: 'Roboto', sans-serif, Arial;
+$font-size-mobile: 16px;
+$font-size-desktop: 25px;
+
+// Colors
+$white: #FFFFFF;
+$gcc1: #EEEEEE;
+$gcc2: #BDBDBD;
+$gcc3: #9E9E9E;
+$gcc4: #424242;
+$black: #000000;
+$teal: #76C2AF;
+$grey: #231F20;
+$indigo: #3F51B5;
+$red: #f44336;
+$green: #4caf50;
+$main-color: $teal;
+$header-text-color: $white;
+$body-text-color: $gcc3;
+
+// Backgrounds
+$header-bk-color: $main-color;
+$app-bk-color: #F5F5F5;
+
+// Animations
+$global-transition-time: .3s;
+
+// Sizes
+$desktop-width: 1024px;
+$app-width-container: 940px;

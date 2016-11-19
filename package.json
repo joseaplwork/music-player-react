@@ -91,6 +91,7 @@
     "phantomjs-polyfill-object-assign": "0.0.2",
     "postcss-loader": "^1.1.1",
     "postcss-normalize": "^0.3.0",
+    "postcss-use": "^2.3.0",
     "react-hot-loader": "^3.0.0-beta.6",
     "resolve-url-loader": "^1.6.0",
     "rimraf": "^2.5.4",

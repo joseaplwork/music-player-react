@@ -1,0 +1,19 @@
+$size: 25px;
+
+.icon {
+  width: $size;
+  height: $size;
+  
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  &.inverted {
+    svg {
+      path {
+        fill: white;
+      }
+    }
+  }
+}

@@ -5,14 +5,16 @@
  */
 
 import React from 'react';
+import Header from 'MP/components/Header';
 
 function App(props) {
   const { children } = props;
 
   return (
-    <div>
+    <section>
+      <Header />
       {React.Children.toArray(children)}
-    </div>
+    </section>
   );
 }
 

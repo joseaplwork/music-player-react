@@ -1,4 +1,5 @@
 {
-  "mp.containers.HomePage.hello": "Hola mundo!",
+  "mp.components.HomePage.header.listenNow": "Ecuchar ahora",
+  "mp.components.HomePage.main.presentation.searchYourSongs": "Busca tus caciones",
   "mp.containers.NotFoundPage.header": "Pagina no encontrada."
 }

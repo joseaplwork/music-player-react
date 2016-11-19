@@ -61,6 +61,7 @@
     "prefer-template": 2,
     "class-methods-use-this": 0,
     "react/forbid-prop-types": 0,
+    "react/jsx-closing-bracket-location": 0,
     "react/jsx-first-prop-new-line": [
       2,
       "multiline"

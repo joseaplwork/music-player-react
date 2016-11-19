@@ -1,15 +1,11 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import Presentation from 'MP/components/Presentation';
+import Main from 'MP/components/Main';
 
-function HomePage() {
-  return (
-    <div>
-      <h1>
-        <FormattedMessage {...messages.hello} />
-      </h1>
-    </div>
-  );
-}
+const HomePage = () => (
+  <Main>
+    <Presentation />
+  </Main>
+);
 
 export default HomePage;
