@@ -10,17 +10,20 @@ import {
 describe('<App /> - selectors', () => {
   describe('selectGlobal', () => {
     const globalSelector = selectGlobal();
+
     it('should select the global state', () => {
       const globalState = fromJS({});
       const mockedState = fromJS({
         global: globalState,
       });
+
       expect(globalSelector(mockedState)).toEqual(globalState);
     });
   });
 
   describe('selectLoading', () => {
     const loadingSelector = selectLoading();
+
     it('should select the loading', () => {
       const loading = false;
       const mockedState = fromJS({
@@ -28,12 +31,14 @@ describe('<App /> - selectors', () => {
           loading,
         },
       });
+
       expect(loadingSelector(mockedState)).toEqual(loading);
     });
   });
 
   describe('selectError', () => {
     const errorSelector = selectError();
+
     it('should select the error', () => {
       const error = 404;
       const mockedState = fromJS({
@@ -41,6 +46,7 @@ describe('<App /> - selectors', () => {
           error,
         },
       });
+
       expect(errorSelector(mockedState)).toEqual(error);
     });
   });
@@ -48,6 +54,7 @@ describe('<App /> - selectors', () => {
 
   describe('selectLocationState', () => {
     const locationStateSelector = selectLocationState();
+
     it('should select the route as a plain JS object', () => {
       const route = fromJS({
         locationBeforeTransitions: null,
@@ -55,6 +62,7 @@ describe('<App /> - selectors', () => {
       const mockedState = fromJS({
         route,
       });
+
       expect(locationStateSelector(mockedState)).toEqual(route.toJS());
     });
   });

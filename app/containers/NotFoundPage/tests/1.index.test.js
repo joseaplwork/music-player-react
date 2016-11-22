@@ -1,11 +1,7 @@
-/**
- * Testing the NotFoundPage
- */
-
 import React from 'react';
 import { shallow } from 'enzyme';
-
 import { FormattedMessage } from 'react-intl';
+
 import { shape } from '../messages';
 import NotFoundPage from '../index';
 
@@ -14,6 +10,7 @@ describe('<NotFoundPage />', () => {
     const renderedComponent = shallow(
       <NotFoundPage />
     );
+
     expect(renderedComponent.contains(
       <h1>
         <FormattedMessage {...shape.header} />

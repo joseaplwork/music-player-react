@@ -12,7 +12,7 @@ import {
   CHANGE_LOCALE,
 } from './constants';
 
-const initialState = fromJS({
+export const initialState = fromJS({
   locale: DEFAULT_LOCALE,
 });
 

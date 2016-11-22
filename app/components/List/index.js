@@ -1,11 +1,9 @@
 import React from 'react';
 import styles from './styles.scss';
 
-function List(props) {
+const List = (props) => {
   const { className } = props;
-  const classes = [styles.wrapper];
-
-  if (className) classes.push(className);
+  const classes = className ? `${styles.wrapper} ${className}` : styles.wrapper;
 
   const ComponentToRender = props.component;
   let content = (<div></div>);
@@ -19,7 +17,7 @@ function List(props) {
   }
 
   return (
-    <section className={classes.join(' ')}>
+    <section className={classes}>
       <ul className={styles.ul}>
         {content}
       </ul>

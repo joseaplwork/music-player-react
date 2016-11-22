@@ -1,7 +1,8 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { LogoIcon, SearchIcon } from 'MP/components/Icons';
+import { LogoIcon } from 'MP/components/Icons';
+import Searcher from 'MP/containers/Searcher';
 import messages from './messages';
 import styles from './styles.scss';
 
@@ -18,12 +19,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
               <FormattedMessage {...messages.listenNow} />
             </div>
           </div>
-          <div className={styles.searcherPart}>
-            <SearchIcon inverted className={styles.searchIcon} />
-            <input
-              type="text"
-              className={styles.searchBar} />
-          </div>
+          <Searcher className={styles.searcherPart} />
         </div>
       </header>
     );

@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import { createStructuredSelector } from 'reselect';
 import { IntlProvider } from 'react-intl';
 import { selectLocale } from './selectors';
 
@@ -32,9 +32,8 @@ LanguageProvider.propTypes = {
   children: React.PropTypes.element.isRequired,
 };
 
-const mapStateToProps = createSelector(
-  selectLocale(),
-  (locale) => ({ locale })
-);
+export const mapStateToProps = createStructuredSelector({
+  locale: selectLocale(),
+});
 
 export default connect(mapStateToProps)(LanguageProvider);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+
 import H2 from '../index';
 
 describe('<H2 />', () => {
@@ -8,6 +9,7 @@ describe('<H2 />', () => {
     const renderedComponent = shallow(
       <H2 id={id} />
     );
+
     expect(renderedComponent.prop('id')).toEqual(id);
   });
 
@@ -16,6 +18,16 @@ describe('<H2 />', () => {
     const renderedComponent = shallow(
       <H2>{children}</H2>
     );
+
     expect(renderedComponent.contains(children)).toEqual(true);
+  });
+
+  it('should have a className attribute', () => {
+    const className = 'test';
+    const renderedComponent = shallow(
+      <H2 className={className} />
+    );
+
+    expect(renderedComponent.hasClass(className)).toEqual(true);
   });
 });

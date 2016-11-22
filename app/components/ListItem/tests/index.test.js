@@ -1,5 +1,6 @@
-import { mount } from 'enzyme';
 import React from 'react';
+import { mount } from 'enzyme';
+
 import ListItem from '../index';
 
 describe('<ListItem />', () => {
@@ -14,6 +15,7 @@ describe('<ListItem />', () => {
     const renderedComponent = mount(
       <ListItem item={content} />
     );
+
     expect(renderedComponent.contains(content)).toEqual(true);
   });
 });

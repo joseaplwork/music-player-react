@@ -3,7 +3,7 @@ import styles from './styles.scss';
 
 const A = (props) => {
   const { className, children, ...attrs } = props;
-  const classes = className ? [styles.base, className].join(' ') : [styles.base].join(' ');
+  const classes = className ? `${styles.base} ${className}` : styles.base;
 
   return (
     <a className={classes} {...attrs}>{children}</a>

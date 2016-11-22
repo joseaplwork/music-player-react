@@ -1,10 +1,7 @@
-/**
- * Test routes
- */
+import { browserHistory } from 'react-router';
 
 import configureStore from 'MP/store';
 import createRoutes from 'MP/routes';
-import { browserHistory } from 'react-router';
 
 describe('Routes creator', () => {
   let store, routes;

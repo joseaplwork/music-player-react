@@ -1,5 +1,7 @@
-/**
- * The global state selectors
+/*
+ *
+ * App selectors
+ *
  */
 
 import { createSelector } from 'reselect';

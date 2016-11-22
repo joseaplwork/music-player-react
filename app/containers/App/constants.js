@@ -1,6 +1,6 @@
 /*
  *
- * AppConstants
+ * App constants
  *
  */
 

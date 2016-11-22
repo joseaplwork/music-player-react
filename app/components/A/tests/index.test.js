@@ -1,11 +1,7 @@
-/**
- * Testing our link component
- */
+import React from 'react';
+import { shallow } from 'enzyme';
 
 import A from '../index';
-
-import { shallow } from 'enzyme';
-import React from 'react';
 
 const href = 'http://google.com/';
 const children = (<h1>Test</h1>);
@@ -18,34 +14,40 @@ const renderComponent = (props = {}) => shallow(
 describe('<A />', () => {
   it('should render an <a> tag', () => {
     const renderedComponent = renderComponent();
+
     expect(renderedComponent.type()).toEqual('a');
   });
 
   it('should have an href attribute', () => {
     const renderedComponent = renderComponent();
+
     expect(renderedComponent.find('a').prop('href')).toEqual(href);
   });
 
   it('should have children', () => {
     const renderedComponent = renderComponent();
+
     expect(renderedComponent.find('a').contains(children)).toEqual(true);
   });
 
   it('should have a className attribute', () => {
     const className = 'test';
     const renderedComponent = renderComponent({ className });
+
     expect(renderedComponent.hasClass(className)).toEqual(true);
   });
 
   it('should adopt a target attribute', () => {
     const target = '_blank';
     const renderedComponent = renderComponent({ target });
+
     expect(renderedComponent.find('a').prop('target')).toEqual(target);
   });
 
   it('should adopt a type attribute', () => {
     const type = 'text/html';
     const renderedComponent = renderComponent({ type });
+
     expect(renderedComponent.find('a').prop('type')).toEqual(type);
   });
 });

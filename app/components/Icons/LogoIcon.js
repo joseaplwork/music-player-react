@@ -3,10 +3,9 @@ import styles from './logo.scss';
 
 const LogoIcon = (props) => {
   const { className, inverted } = props;
-  const classes = [styles.logo];
+  const classes = className ? [styles.logo, className] : [styles.logo];
 
   if (inverted) classes.push(styles.inverted);
-  if (className) classes.push(className);
 
   return (
     <div className={classes.join(' ')}>

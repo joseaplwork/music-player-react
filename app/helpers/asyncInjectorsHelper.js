@@ -1,6 +1,5 @@
-import { conformsTo, isEmpty, isFunction, isObject, isString } from 'lodash';
+import { conformsTo, isFunction, isObject } from 'lodash';
 import invariant from 'invariant';
-import warning from 'warning';
 import createReducer from 'MP/reducer';
 
 /**
@@ -14,6 +13,7 @@ export function checkStore(store) {
     replaceReducer: isFunction,
     runSaga: isFunction,
     asyncReducers: isObject,
+    asyncSagas: isObject,
   };
   invariant(
     conformsTo(store, shape),
@@ -27,18 +27,23 @@ export function checkStore(store) {
  * Inject an asynchronously loaded reducer
  */
 export function injectAsyncReducer(store, isValid) {
-  return function injectReducer(name, asyncReducer) {
+  return function injectReducer(asyncReducers) {
     if (!isValid) checkStore(store);
 
     invariant(
-      isString(name) && !isEmpty(name) && isFunction(asyncReducer),
-      '(helper) injectAsyncReducer: Expected `asyncReducer` to be a reducer function'
+      isObject(asyncReducers),
+      '(helper) injectAsyncReducer: Expected `asyncReducer` to be an object with reducer functions'
     );
+    let shouldReplace = false;
 
-    if (Reflect.has(store.asyncReducers, name)) return;
+    Object.keys(asyncReducers).forEach((key) => {
+      if (!Reflect.has(store.asyncReducers, key)) {
+        shouldReplace = true;
+        store.asyncReducers[key] = asyncReducers[key]; // eslint-disable-line no-param-reassign
+      }
+    });
 
-    store.asyncReducers[name] = asyncReducer; // eslint-disable-line no-param-reassign
-    store.replaceReducer(createReducer(store.asyncReducers));
+    if (shouldReplace) store.replaceReducer(createReducer(store.asyncReducers));
   };
 }
 
@@ -46,20 +51,20 @@ export function injectAsyncReducer(store, isValid) {
  * Inject an asynchronously loaded saga
  */
 export function injectAsyncSagas(store, isValid) {
-  return function injectSagas(sagas) {
+  return function injectSagas(asyncSagas) {
     if (!isValid) checkStore(store);
 
     invariant(
-      Array.isArray(sagas),
-      '(helper) injectAsyncSagas: Expected `sagas` to be an array of generator functions'
+      isObject(asyncSagas),
+      '(helper) injectAsyncSagas: Expected `asyncSagas` to be an object width generator functions'
     );
 
-    warning(
-      !isEmpty(sagas),
-      '(helper) injectAsyncSagas: Received an empty `sagas` array'
-    );
-
-    sagas.map(store.runSaga);
+    Object.keys(asyncSagas).forEach((key) => {
+      if (!Reflect.has(store.asyncSagas, key)) {
+        // run saga if it's needed
+        store.asyncSagas[key] = store.runSaga(asyncSagas[key]); // eslint-disable-line
+      }
+    });
   };
 }
 

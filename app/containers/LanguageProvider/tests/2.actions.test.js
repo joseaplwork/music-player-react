@@ -11,6 +11,7 @@ describe('<LanguageProvider /> - actions', () => {
       type: CHANGE_LOCALE,
       locale: 'sv',
     };
+
     expect(changeLocale('sv')).toEqual(expected);
   });
 });

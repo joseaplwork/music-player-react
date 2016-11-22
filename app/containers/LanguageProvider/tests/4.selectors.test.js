@@ -1,18 +1,34 @@
+import { fromJS } from 'immutable';
+
 import {
   selectLanguage,
+  selectLocale,
 } from '../selectors';
-import { fromJS } from 'immutable';
 
 describe('<LanguageProvider /> - selectors', () => {
   describe('selectLanguage', () => {
-    const globalSelector = selectLanguage();
+    const languageSelector = selectLanguage();
 
-    it('should select the global state', () => {
-      const globalState = fromJS({});
+    it('should select the language state', () => {
+      const languageState = fromJS({});
       const mockedState = fromJS({
-        language: globalState,
+        language: languageState,
       });
-      expect(globalSelector(mockedState)).toEqual(globalState);
+
+      expect(languageSelector(mockedState)).toEqual(languageState);
+    });
+  });
+
+  describe('selectLocale', () => {
+    const localeSelector = selectLocale();
+
+    it('should select the locale state', () => {
+      const locale = 'es';
+      const mockedState = fromJS({
+        language: { locale },
+      });
+
+      expect(localeSelector(mockedState)).toEqual(locale);
     });
   });
 });

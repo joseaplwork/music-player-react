@@ -1,11 +1,13 @@
 import React from 'react';
 import styles from './styles.scss';
 
-function ListItem(props) {
+const ListItem = (props) => {
+  const { item } = props;
+
   return (
     <li className={styles.wrapper}>
       <div className={styles.item}>
-        {props.item}
+        {item}
       </div>
     </li>
   );

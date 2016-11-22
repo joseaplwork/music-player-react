@@ -1,12 +1,13 @@
-import LanguageProvider from '../index';
-
-import { shallow } from 'enzyme';
-import { FormattedMessage, defineMessages } from 'react-intl';
-import configureStore from 'MP/store';
 import React from 'react';
+import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router';
+import { FormattedMessage, defineMessages } from 'react-intl';
+
+import configureStore from 'MP/store';
 import { translationMessages } from 'MP/helpers/i18nHelper';
+
+import LanguageProvider from '../index';
 
 describe('<LanguageProvider />', () => {
   let store;
@@ -29,6 +30,7 @@ describe('<LanguageProvider />', () => {
         </LanguageProvider>
       </Provider>
     );
+
     expect(renderedComponent.contains(<FormattedMessage {...messages.someMessage} />)).toEqual(true);
   });
 });

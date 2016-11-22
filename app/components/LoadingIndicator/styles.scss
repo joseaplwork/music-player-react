@@ -5,7 +5,14 @@ $width: 50px;
 .loader {
   position: relative;
   margin: 0 auto;
-  width: $width;
+
+  &.loaderAbsolute {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 90;
+    background-color: transparentize($white, 0.6);
+  }
 
   &:before {
     content: '';
@@ -15,9 +22,8 @@ $width: 50px;
 
   .circular {
     animation: rotate 2s linear infinite;
-    height: 100%;
+    width: $width;
     transform-origin: center center;
-    width: 100%;
     position: absolute;
     top: 0;
     bottom: 0;

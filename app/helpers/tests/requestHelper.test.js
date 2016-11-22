@@ -1,8 +1,5 @@
-/**
- * Test the request function
- */
-
 import sinon from 'sinon';
+
 import request from '../requestHelper.js';
 
 describe('Request helper', () => {

@@ -1,9 +1,6 @@
-/**
- * Test store
- */
+import { browserHistory } from 'react-router';
 
 import configureStore from 'MP/store';
-import { browserHistory } from 'react-router';
 import { checkStore } from 'MP/helpers/asyncInjectorsHelper';
 
 describe('Store configuration', () => {
@@ -22,6 +19,12 @@ describe('Store configuration', () => {
   describe('asyncReducers', () => {
     it('should contain an object for async reducers', () => {
       expect(typeof store.asyncReducers).toEqual('object');
+    });
+  });
+
+  describe('asyncSagas', () => {
+    it('should contain an object for async sagas', () => {
+      expect(typeof store.asyncSagas).toEqual('object');
     });
   });
 

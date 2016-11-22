@@ -3,10 +3,9 @@ import styles from './icons.scss';
 
 const ShareIcon = (props) => {
   const { className, inverted } = props;
-  const classes = [styles.icon];
+  const classes = className ? [styles.icon, className] : [styles.icon];
 
   if (inverted) classes.push(styles.inverted);
-  if (className) classes.push(className);
 
   return (
     <div className={classes.join(' ')}>

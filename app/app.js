@@ -41,6 +41,8 @@ const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: selectLocationState(),
 });
 
+const routes = createRoutes(store);
+const scroll = applyRouterMiddleware(useScroll());
 // Set up the router, wrapping all Routes in the App component
 const render = (messages) => {
   ReactDOM.render(
@@ -48,10 +50,8 @@ const render = (messages) => {
       <LocaleProvider messages={messages}>
         <Router
           history={history}
-          routes={createRoutes(store)}
-          render={
-            applyRouterMiddleware(useScroll())
-          }
+          routes={routes}
+          render={scroll}
         />
       </LocaleProvider>
     </Provider>,

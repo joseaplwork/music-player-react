@@ -1,20 +1,15 @@
-/**
- * Test async injectors
- */
-
 import 'babel-polyfill';
-import configureStore from 'MP/store';
+import { fromJS } from 'immutable';
 import { memoryHistory } from 'react-router';
 import { put } from 'redux-saga/effects';
-import { fromJS } from 'immutable';
+
+import configureStore from 'MP/store';
 
 import {
   injectAsyncReducer,
   injectAsyncSagas,
   asyncInjectorsHelper,
 } from '../asyncInjectorsHelper';
-
-// Fixtures
 
 const initialState = fromJS({ reduced: 'soon' });
 
@@ -31,9 +26,9 @@ function* testSaga() {
   yield put({ type: 'TEST', payload: 'yup' });
 }
 
-const sagas = [
+const sagas = {
   testSaga,
-];
+};
 
 describe('AsyncInjectors helper', () => {
   let store;
@@ -46,10 +41,10 @@ describe('AsyncInjectors helper', () => {
     it('given a store, should return all async injectors', () => {
       const { injectReducer, injectSagas } = asyncInjectorsHelper(store);
 
-      injectReducer('test', reducer);
+      injectReducer({reducer});
       injectSagas(sagas);
 
-      const actual = store.getState().get('test');
+      const actual = store.getState().get('reducer');
       const expected = initialState.merge({ reduced: 'yup' });
 
       expect(actual.toJS()).toEqual(expected.toJS());
@@ -79,47 +74,27 @@ describe('AsyncInjectors helper', () => {
       it('given a store, it should provide a function to inject a reducer', () => {
         const injectReducer = injectAsyncReducer(store);
 
-        injectReducer('test', reducer);
+        injectReducer({reducer});
 
-        const actual = store.getState().get('test');
+        const actual = store.getState().get('reducer');
         const expected = initialState;
 
         expect(actual.toJS()).toEqual(expected.toJS());
       });
 
-      it('should throw if passed invalid name', () => {
+      it('should throw if passed invalid object with reducers', () => {
         let result = false;
 
         const injectReducer = injectAsyncReducer(store);
 
         try {
-          injectReducer('', reducer);
+          injectReducer([]);
         } catch (err) {
           result = err.name === 'Invariant Violation';
         }
 
         try {
-          injectReducer(999, reducer);
-        } catch (err) {
-          result = err.name === 'Invariant Violation';
-        }
-
-        expect(result).toEqual(true);
-      });
-
-      it('should throw if passed invalid reducer', () => {
-        let result = false;
-
-        const injectReducer = injectAsyncReducer(store);
-
-        try {
-          injectReducer('bad', 'nope');
-        } catch (err) {
-          result = err.name === 'Invariant Violation';
-        }
-
-        try {
-          injectReducer('coolio', 12345);
+          injectReducer('');
         } catch (err) {
           result = err.name === 'Invariant Violation';
         }
@@ -133,10 +108,10 @@ describe('AsyncInjectors helper', () => {
         const injectSagas = injectAsyncSagas(store);
         const injectReducer = injectAsyncReducer(store);
 
-        injectReducer('test', reducer);
+        injectReducer({reducer});
         injectSagas(sagas);
 
-        const actual = store.getState().get('test');
+        const actual = store.getState().get('reducer');
         const expected = initialState.merge({ reduced: 'yup' });
 
         expect(actual.toJS()).toEqual(expected.toJS());
@@ -148,13 +123,13 @@ describe('AsyncInjectors helper', () => {
         const injectSagas = injectAsyncSagas(store);
 
         try {
-          injectSagas({ testSaga });
+          injectSagas([]);
         } catch (err) {
           result = err.name === 'Invariant Violation';
         }
 
         try {
-          injectSagas(testSaga);
+          injectSagas('');
         } catch (err) {
           result = err.name === 'Invariant Violation';
         }
