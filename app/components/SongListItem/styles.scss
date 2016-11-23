@@ -1,0 +1,63 @@
+@import "~helpers/mixins";
+@import "~helpers/variables";
+
+$thumb-size: 272px;
+
+.wrapper {
+  width: $thumb-size;
+  max-width: 100%;
+  margin: 0.5em;
+  border-radius: 2px;
+  background: white;
+  box-shadow: 0 2px 4px transparentize($black, 0.9);
+  overflow: hidden;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8em;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .thumb {
+    width: $thumb-size;
+    height: $thumb-size;
+  
+    img {
+      width: 100%;
+    }
+  }
+
+  .description {
+    width: 100%;
+    padding: 0.4em;
+    flex: 1;
+
+    strong {
+      font-size: 2em;
+      color: $gcc4;
+    }
+
+    .secondary {
+      margin: 0.5em;
+    }
+
+    p {
+      margin: 0.2em;
+    }
+  }
+
+  .extra {
+    border-top: 1px solid $gcc1;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    padding: 0.8em;
+  }
+  
+  @include desktop {
+    font-size: 0.6em;
+  }
+}

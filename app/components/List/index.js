@@ -2,28 +2,28 @@ import React from 'react';
 import styles from './styles.scss';
 
 const List = (props) => {
-  const { className } = props;
-  const classes = className ? `${styles.wrapper} ${className}` : styles.wrapper;
+  const { className, component, items } = props;
+  const classes = className ? `${styles.ul} ${className}` : styles.ul;
 
-  const ComponentToRender = props.component;
+  const ComponentToRender = component;
   let content = (<div></div>);
 
-  if (props.items) {
-    content = props.items.map((item, index) => (
-      <ComponentToRender key={`item-${index}`} item={item} />
+  if (items) {
+    content = items.map((item, index) => (
+      <ComponentToRender key={`item-${index}`} item={item} id={index} />
     ));
   } else {
     content = (<ComponentToRender />);
   }
 
   return (
-    <section className={classes}>
-      <ul className={styles.ul}>
+    <section className={styles.wrapper}>
+      <ul className={classes}>
         {content}
       </ul>
     </section>
   );
-}
+};
 
 List.propTypes = {
   className: React.PropTypes.string,

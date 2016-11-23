@@ -18,6 +18,11 @@ const selectError = () => createSelector(
   (globalState) => globalState.get('error'),
 );
 
+const selectSongs = () => createSelector(
+  selectGlobal(),
+  (globalState) => globalState.get('songs'),
+);
+
 const selectLocationState = () => {
   let prevRoutingState;
   let prevRoutingStateJS;
@@ -38,5 +43,6 @@ export {
   selectGlobal,
   selectLoading,
   selectError,
+  selectSongs,
   selectLocationState,
 };

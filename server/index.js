@@ -5,7 +5,7 @@ const setup = require('./express');
 const port = process.env.PORT || 3000;
 const resolve = require('path').resolve;
 const app = express();
-const itunesAPI = 'https://itunes.apple.com/search?term=';
+const itunesAPI = 'https://itunes.apple.com/search?media=music&term=';
 
 app.get('/api', (req, res) => {
   request(itunesAPI + req.query.term, function (error, response, body) {

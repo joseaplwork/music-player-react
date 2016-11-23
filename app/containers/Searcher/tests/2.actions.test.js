@@ -29,11 +29,14 @@ describe('<Searcher /> - actions', () => {
   });
 
   it('has a type of LOAD_SONGS_SUCCESS', () => {
+    const locale = 'es';
     const expected = {
       type: LOAD_SONGS_SUCCESS,
       songs: [{ test:'test' }],
+      locale,
+
     };
-    expect(songsLoaded([{ test:'test' }])).toEqual(expected);
+    expect(songsLoaded([{ test:'test' }], locale)).toEqual(expected);
   });
 
   it('has a type of LOAD_SONGS_ERROR', () => {

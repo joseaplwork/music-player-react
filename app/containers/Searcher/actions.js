@@ -24,10 +24,11 @@ export function loadSongs() {
   };
 }
 
-export function songsLoaded(songs) {
+export function songsLoaded(songs, locale) {
   return {
     type: LOAD_SONGS_SUCCESS,
     songs,
+    locale,
   };
 }
 

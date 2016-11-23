@@ -27,7 +27,7 @@
     border-radius: 3px;
     width: 100%;
     color: transparentize($white, 0.3);
-    font-size: 15px;
+    font-size: 1em;
     font-weight: 400;
     outline: none;
 
@@ -37,7 +37,7 @@
     }
 
     @include desktop {
-      padding: 0 16px 0 80px;
+      padding: 0 16px 0 70px;
     }
   }
 

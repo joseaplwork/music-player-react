@@ -2,6 +2,12 @@
   height: 100%;
 
   .indicator {
-    width: 100px;
+    width: 5em;
+  }
+
+  .songsList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

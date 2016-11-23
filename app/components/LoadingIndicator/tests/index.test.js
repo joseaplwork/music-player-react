@@ -19,7 +19,7 @@ describe('<LoadingIndicator />', () => {
       <LoadingIndicator className={className} />
     );
 
-    expect(renderedComponent.find('svg').hasClass(className)).toEqual(true);
+    expect(renderedComponent.hasClass(className)).toEqual(true);
   });
 
   it('should contain absolute className', () => {

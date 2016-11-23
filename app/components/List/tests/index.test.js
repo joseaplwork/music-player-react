@@ -32,6 +32,6 @@ describe('<List />', () => {
       <List className={className} component={ListItem} />
     );
 
-    expect(renderedComponent.hasClass(className)).toEqual(true);
+    expect(renderedComponent.find('ul').hasClass(className)).toEqual(true);
   });
 });

@@ -4,6 +4,7 @@ import {
   selectGlobal,
   selectLoading,
   selectError,
+  selectSongs,
   selectLocationState,
 } from '../selectors';
 
@@ -51,6 +52,20 @@ describe('<App /> - selectors', () => {
     });
   });
 
+  describe('selectSongs', () => {
+    const songsSelector = selectSongs();
+
+    it('should select the songs', () => {
+      const songs = false;
+      const mockedState = fromJS({
+        global: {
+          songs,
+        },
+      });
+
+      expect(songsSelector(mockedState)).toEqual(songs);
+    });
+  });
 
   describe('selectLocationState', () => {
     const locationStateSelector = selectLocationState();

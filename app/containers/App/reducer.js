@@ -16,7 +16,7 @@ import {
 export const initialState = fromJS({
   loading: false,
   error: false,
-  songs: [],
+  songs: false,
 });
 
 function appReducer(state = initialState, action) {
@@ -26,7 +26,7 @@ function appReducer(state = initialState, action) {
         .set('loading', true);
     case LOAD_SONGS_SUCCESS:
       return state
-        .set('songs', filterSongs(action.songs))
+        .set('songs', filterSongs(action.songs, action.locale))
         .set('loading', false);
     case LOAD_SONGS_ERROR:
       return state
