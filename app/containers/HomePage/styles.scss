@@ -1,5 +1,44 @@
+@import "~helpers/variables";
+@import "~helpers/mixins";
+
 .wrapper {
   height: 100%;
+
+  .noResult {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+    .iconSize {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 20px;
+    }
+
+    svg path {
+      fill: $gcc2;
+    }
+  }
+
+  .filter {
+    position: absolute;
+    top: 65px;
+    z-index: 900;
+    font-size: 0.8em;
+
+    @include desktop {
+      font-size: 0.6em;
+    }
+  }
+
+  .main {
+    padding-top: calc(65px + 2.6em);
+    position: relative;
+
+    @include desktop {
+      padding-top: calc(65px + 2em);
+    }
+  }
 
   .indicator {
     width: 5em;
@@ -9,5 +48,19 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start;
+    animation: display .3s ease-in;
+
+  }
+}
+
+@keyframes display {
+  0% { 
+    opacity: 0.5;
+    transform: translate3d(0, 10px, 0); 
+  }
+  100% { 
+    opacity: 1;
+    transform: translate3d(0, 0, 0); 
   }
 }

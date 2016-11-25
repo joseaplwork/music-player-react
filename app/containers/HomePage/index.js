@@ -6,6 +6,7 @@
 
 import React from 'react';
 import { createStructuredSelector } from 'reselect';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import Presentation from 'MP/components/Presentation';
@@ -14,9 +15,12 @@ import Main from 'MP/components/Main';
 import List from 'MP/components/List';
 import SongListItem from 'MP/components/SongListItem';
 import LoadingIndicator from 'MP/components/LoadingIndicator';
+import SongsFilter from 'MP/containers/SongsFilter';
 import { selectLoading, selectSongs } from 'MP/containers/App/selectors';
 import { selectSearchStarted } from 'MP/containers/Searcher/selectors';
+import { SearchIcon } from 'MP/components/Icons';
 
+import messages from './messages';
 import styles from './styles.scss';
 
 export const HomePage = (props) => {
@@ -27,13 +31,24 @@ export const HomePage = (props) => {
   if (loading) indicator = (<LoadingIndicator className={styles.indicator} />);
   if (searchStarted) {
     component = null;
-    if (!loading) component = (<List className={styles.songsList} component={SongListItem} items={songs} />);
+
+    if (!loading) {
+      component = (
+        <div className={styles.noResult}>
+          <SearchIcon className={styles.iconSize} />
+          <p><FormattedMessage {...messages.notResultsFound} /></p>
+        </div>
+      );
+
+      if (songs.length) component = (<List className={styles.songsList} component={SongListItem} items={songs} />);
+    }
   }
 
   return (
     <div className={styles.wrapper}>
       <Header />
-      <Main>
+      <SongsFilter className={styles.filter} />
+      <Main className={styles.main}>
         {indicator}
         {component}
       </Main>

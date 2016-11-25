@@ -1,5 +1,10 @@
 {
   "mp.components.HomePage.header.listenNow": "Ecuchar ahora",
   "mp.components.HomePage.main.presentation.searchYourSongs": "Busca tus caciones",
+  "mp.components.HomePage.main.songsFilter.noFilter": "Sin filtro",
+  "mp.components.HomePage.main.songsFilter.duration": "Duración",
+  "mp.components.HomePage.main.songsFilter.gender": "Género",
+  "mp.components.HomePage.main.songsFilter.price": "Precio",
+  "mp.components.HomePage.main.notResultsFound": "No se encontró resultados",
   "mp.containers.NotFoundPage.header": "Pagina no encontrada."
 }

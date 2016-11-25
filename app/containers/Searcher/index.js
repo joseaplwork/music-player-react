@@ -36,11 +36,8 @@ Searcher.propTypes = {
 export function mapDispatchToProps(dispatch) {
   return {
     onInputChange: (evt) => {
-      const value = evt.target.value;
-      if (value.length > 1) {
-        dispatch(changeSearchInput(encodeURIComponent(value)));
-        dispatch(loadSongs());
-      }
+      dispatch(changeSearchInput(encodeURIComponent(evt.target.value)));
+      dispatch(loadSongs());
     },
   };
 }

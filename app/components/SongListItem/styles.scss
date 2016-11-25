@@ -12,19 +12,21 @@ $thumb-size: 272px;
   box-shadow: 0 2px 4px transparentize($black, 0.9);
   overflow: hidden;
   height: auto;
-  display: flex;
-  flex-direction: column;
   font-size: 0.8em;
+  display: flex;
 
   a {
     text-decoration: none;
     color: inherit;
+    display: flex;
+    flex-direction: column;
   }
 
   .thumb {
     width: $thumb-size;
     height: $thumb-size;
-  
+    flex: 0;
+
     img {
       width: 100%;
     }

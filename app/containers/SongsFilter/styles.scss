@@ -1,0 +1,27 @@
+@import "~helpers/variables";
+
+.wrapper {
+  background-color: $white;
+  width: 100%;
+
+  ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    align-items: flex-start;
+    padding: 0;
+
+    a {
+      color: $gcc3;
+      padding: 1em;
+      cursor: pointer;
+      transition: background-color $global-transition-time;
+      display: inline-block;
+      outline: none;
+
+      &:hover {
+        background-color: $gcc1;
+      }
+    }
+  }
+}
