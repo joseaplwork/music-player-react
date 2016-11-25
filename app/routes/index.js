@@ -39,6 +39,23 @@ export default function createRoutes(store) {
       },
       {
         path: '*',
+        name: '/player/:id',
+        getComponent(nextState, cb) {
+          const importModules = Promise.all([
+            System.import('MP/containers/PlayerPage'),
+          ]);
+
+          const renderRoute = loadRoute(cb);
+
+          importModules.then(([component]) => {
+            renderRoute(component);
+          });
+
+          importModules.catch(errorLoading);
+        },
+      },
+      {
+        path: '*',
         name: 'notfound',
         getComponent(nextState, cb) {
           System.import('MP/containers/NotFoundPage')
