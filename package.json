@@ -9,6 +9,10 @@
     "build": "NODE_ENV=production webpack --config webpack/webpack.build.conf.js",
     "prod": "npm run build && cross-env NODE_ENV=production  node server"
   },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/joseaplwork/music-player-react"
+  },
   "keywords": [
     "reactjs",
     "redux",
