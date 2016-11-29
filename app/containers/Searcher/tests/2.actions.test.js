@@ -18,6 +18,7 @@ describe('<Searcher /> - actions', () => {
       type: CHANGE_INPUT,
       value: 'test',
     };
+
     expect(changeSearchInput('test')).toEqual(expected);
   });
 
@@ -25,6 +26,7 @@ describe('<Searcher /> - actions', () => {
     const expected = {
       type: LOAD_SONGS,
     };
+
     expect(loadSongs()).toEqual(expected);
   });
 
@@ -34,8 +36,8 @@ describe('<Searcher /> - actions', () => {
       type: LOAD_SONGS_SUCCESS,
       songs: [{ test:'test' }],
       locale,
-
     };
+
     expect(songsLoaded([{ test:'test' }], locale)).toEqual(expected);
   });
 
@@ -44,6 +46,7 @@ describe('<Searcher /> - actions', () => {
       type: LOAD_SONGS_ERROR,
       error: 'error test',
     };
+
     expect(songsLoadingError('error test')).toEqual(expected);
   });
 });

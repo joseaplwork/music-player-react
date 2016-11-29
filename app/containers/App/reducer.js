@@ -7,6 +7,13 @@
 import { fromJS } from 'immutable';
 import { filterSongs } from 'MP/helpers/parseDataHelper';
 import {
+  CURRENT_SONG,
+} from 'MP/containers/SongListItem/constants';
+import {
+  NEXT_SONG,
+  PREVIOUS_SONG,
+} from 'MP/containers/Player/constants';
+import {
   LOAD_SONGS,
   LOAD_SONGS_SUCCESS,
   LOAD_SONGS_ERROR,
@@ -23,6 +30,12 @@ export const initialState = fromJS({
   loading: false,
   error: false,
   songs: false,
+  currentSong: {
+    next: null,
+    current: null,
+    prev: null,
+    song: false,
+  },
 });
 
 function appReducer(state = initialState, action) {
@@ -79,6 +92,21 @@ function appReducer(state = initialState, action) {
 
       return state
         .set('songs', sorted.toJS());
+    }
+    case NEXT_SONG:
+    case PREVIOUS_SONG:
+    case CURRENT_SONG: {
+      const songs = state.get('songs');
+      const song = songs[action.key];
+      const nextIndex = action.key + 1;
+      const next = action.key >= 0 && (songs.length > 1) && songs[nextIndex] ? nextIndex : null;
+      const prev = action.key > 0 ? (action.key - 1) : null;
+
+      return state
+        .setIn(['currentSong', 'next'], next)
+        .setIn(['currentSong', 'current'], action.key)
+        .setIn(['currentSong', 'prev'], prev)
+        .setIn(['currentSong', 'song'], song);
     }
     default:
       return state;

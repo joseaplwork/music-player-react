@@ -17,7 +17,7 @@ export default function createRoutes(store) {
     component: App,
     childRoutes: [
       {
-        path: '/',
+        path: '/(index.html)',
         name: 'home',
         getComponent(location, cb) {
           const importModules = Promise.all([
@@ -38,16 +38,18 @@ export default function createRoutes(store) {
         },
       },
       {
-        path: '*',
-        name: '/player/:id',
+        path: '/player',
+        name: 'player',
         getComponent(nextState, cb) {
           const importModules = Promise.all([
+            System.import('MP/containers/PlayerPage/reducer'),
             System.import('MP/containers/PlayerPage'),
           ]);
 
           const renderRoute = loadRoute(cb);
 
-          importModules.then(([component]) => {
+          importModules.then(([playerReducer, component]) => {
+            injectReducer(playerReducer);
             renderRoute(component);
           });
 

@@ -23,6 +23,21 @@ const selectSongs = () => createSelector(
   (globalState) => globalState.get('songs'),
 );
 
+const selectNext = () => createSelector(
+  selectGlobal(),
+  (globalState) => globalState.getIn(['currentSong', 'next']),
+);
+
+const selectPrevious = () => createSelector(
+  selectGlobal(),
+  (globalState) => globalState.getIn(['currentSong', 'prev']),
+);
+
+const selectCurrentSong = () => createSelector(
+  selectGlobal(),
+  (globalState) => globalState.getIn(['currentSong', 'song']),
+);
+
 const selectLocationState = () => {
   let prevRoutingState;
   let prevRoutingStateJS;
@@ -44,5 +59,8 @@ export {
   selectLoading,
   selectError,
   selectSongs,
+  selectCurrentSong,
+  selectNext,
+  selectPrevious,
   selectLocationState,
 };

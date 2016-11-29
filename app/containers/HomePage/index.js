@@ -13,7 +13,7 @@ import Presentation from 'MP/components/Presentation';
 import Header from 'MP/components/Header';
 import Main from 'MP/components/Main';
 import List from 'MP/components/List';
-import SongListItem from 'MP/components/SongListItem';
+import SongListItem from 'MP/containers/SongListItem';
 import LoadingIndicator from 'MP/components/LoadingIndicator';
 import SongsFilter from 'MP/containers/SongsFilter';
 import { selectLoading, selectSongs } from 'MP/containers/App/selectors';

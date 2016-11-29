@@ -1,0 +1,9 @@
+@import "~helpers/variables";
+.base {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: $gcc3;
+  font-size: 1em;
+}

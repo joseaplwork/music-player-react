@@ -1,0 +1,139 @@
+@import '~helpers/variables';
+@import '~helpers/mixins';
+
+$icon-size: 50px;
+$disk-size: 200px;
+$line1: $disk-size - ($disk-size * 0.2);
+$line2: $disk-size - ($disk-size * 0.4);
+$line3: $disk-size - ($disk-size * 0.6);
+
+.wrapper {
+  position: relative;
+  margin: 0 20px;
+  width: 300px;
+  background: linear-gradient(56deg, #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%);
+  box-shadow: 0 0 8px rgba(0,0,0,.4);
+  display: flex;
+  flex-direction: column;
+
+  .title,
+  .player,
+  .controls,
+   {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+  }
+
+  .title {
+    flex-direction: column;
+    text-align: center;
+
+    strong {
+      font-size: 1.2em;
+      padding-top: 0.5em;
+    }
+
+    p {
+      margin: 0.3em 0; 
+    }
+  }
+
+  .player {
+    flex: 2;
+    position: relative;
+    overflow: hidden;
+    min-height: 250px;
+
+    a {
+      z-index: 100;
+      outline: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -($icon-size/2);
+      margin-left: -($icon-size/2);
+    }
+
+    .disk {
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      width: $disk-size;
+      height: $disk-size;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: animation .5s;
+
+      &.playing {
+        animation: playing 4s linear infinite;
+      }
+
+      .line1, 
+      .line2, 
+      .line3, 
+      .line4 {
+        border: 1px solid transparentize($gcc1, 0.6);
+        border-radius: 50%;
+        position: absolute;
+      }
+
+      .line1 { width: $line1; height: $line1; top: ($disk-size - $line1)/2; left: ($disk-size - $line1)/2 }
+      .line2 { width: $line2; height: $line2; top: ($disk-size - $line2)/2; left: ($disk-size - $line2)/2 }
+      .line3 { width: $line3; height: $line3; top: ($disk-size - $line3)/2; left: ($disk-size - $line3)/2 }
+    }
+  }
+
+  .controls {
+    justify-content: space-around;
+  }
+
+  .control {
+    width: $icon-size;
+    height: $icon-size;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+    z-index: 100;
+
+    path:not([fill='none']) {
+      fill: $main-color;
+    }
+
+    a {
+      z-index: 100;
+      outline: none;
+    }
+  }
+  
+  .back {
+    display: flex;
+    justify-content: center;
+    padding: 0.5em 0;
+
+    a {
+      font-size: 1em;
+      color: $main-color;
+    }
+  }
+
+  .disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+}
+
+@keyframes playing {
+  0% { 
+    transform: rotateZ(0deg);
+  }
+  100% { 
+    transform: rotateZ(360deg);
+  }
+}

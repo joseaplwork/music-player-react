@@ -6,6 +6,9 @@ import {
   selectError,
   selectSongs,
   selectLocationState,
+  selectCurrentSong,
+  selectNext,
+  selectPrevious,
 } from '../selectors';
 
 describe('<App /> - selectors', () => {
@@ -64,6 +67,62 @@ describe('<App /> - selectors', () => {
       });
 
       expect(songsSelector(mockedState)).toEqual(songs);
+    });
+  });
+
+  describe('selectCurrentSong', () => {
+    const currentSongSelector = selectCurrentSong();
+
+    it('should select the current song', () => {
+      const song = {
+        trackName: 123,
+      };
+
+      const mockedState = fromJS({
+        global: {
+          currentSong: {
+            song,
+          },
+        },
+      });
+
+      expect(currentSongSelector(mockedState).toJS()).toEqual(song);
+    });
+  });
+
+  describe('selectNext', () => {
+    const nextSelector = selectNext();
+
+    it('should select the next song', () => {
+      const next = 1;
+
+      const mockedState = fromJS({
+        global: {
+          currentSong: {
+            next,
+          },
+        },
+      });
+
+      expect(nextSelector(mockedState)).toEqual(next);
+    });
+  });
+
+  describe('selectPrevious', () => {
+    const previousSelector = selectPrevious();
+
+    it('should select the previous song', () => {
+      const prev = 1;
+
+      const mockedState = fromJS({
+        global: {
+          currentSong: {
+            prev,
+          },
+        },
+      });
+
+      expect(previousSelector(mockedState)).toEqual(prev);
     });
   });
 

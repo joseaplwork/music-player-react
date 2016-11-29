@@ -1,16 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
+import { setCurrentSong } from './actions';
 import styles from './styles.scss';
 
 export const SongListItem = (props) => {
-  const { item, id } = props;
+  const { item, id, onClick } = props;
 
   if (!item) return null;
 
   return (
     <li className={styles.wrapper}>
-      <Link to={`/player/${id}`}>
+      <a tabIndex="0" onClick={() => onClick(id)}>
         <div className={styles.thumb}>
           <img src={item.artworkUrl30} alt={item.artistName} />
         </div>
@@ -27,7 +29,7 @@ export const SongListItem = (props) => {
           <span>{item.trackTimeMillis}</span>
           <span>{item.trackPrice}</span>
         </div>
-      </Link>
+      </a>
     </li>
   );
 };
@@ -35,6 +37,16 @@ export const SongListItem = (props) => {
 SongListItem.propTypes = {
   item: React.PropTypes.object,
   id: React.PropTypes.number,
+  onClick: React.PropTypes.func,
 };
 
-export default SongListItem;
+export function mapDispatchToProps(dispatch) {
+  return {
+    onClick: (id) => {
+      dispatch(setCurrentSong(id));
+      browserHistory.push('/player');
+    },
+  };
+}
+
+export default connect(null, mapDispatchToProps)(SongListItem);

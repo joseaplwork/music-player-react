@@ -6,5 +6,6 @@
   "mp.components.HomePage.main.songsFilter.gender": "Género",
   "mp.components.HomePage.main.songsFilter.price": "Precio",
   "mp.components.HomePage.main.notResultsFound": "No se encontró resultados",
+  "mp.components.player.back": "Volver a la lista",
   "mp.containers.NotFoundPage.header": "Pagina no encontrada."
 }

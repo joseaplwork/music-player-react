@@ -5,21 +5,33 @@
  */
 
 import React from 'react';
+import { Link } from 'react-router';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 
 import Main from 'MP/components/Main';
+import Player from 'MP/containers/Player';
 import { selectSongs } from 'MP/containers/App/selectors';
+import messages from 'MP/containers/Player/messages';
 
 import styles from './styles.scss';
 
 export const PlayerPage = (props) => {
   const { songs } = props;
-  console.log(songs);
+  let component = (
+    <Link to="/">
+      <FormattedMessage {...messages.back} />
+    </Link>
+  );
+
+  if (songs.length) component = (<Player />);
 
   return (
     <div className={styles.wrapper}>
-      <Main></Main>
+      <Main>
+        {component}
+      </Main>
     </div>
   );
 };

@@ -8,6 +8,13 @@ import {
   triggerFilter,
 } from 'MP/containers/SongsFilter/actions';
 import {
+  playNext,
+  playPrevious,
+} from 'MP/containers/Player/actions';
+import {
+  setCurrentSong,
+} from 'MP/containers/SongListItem/actions';
+import {
   FILTER_DURATION,
   FILTER_GENDER,
   FILTER_PRICE,
@@ -155,6 +162,65 @@ describe('<App /> - reducer', () => {
       }]);
 
     expect(appReducer(mockedState, triggerFilter(FILTER_PRICE)).toJS())
+      .toEqual(expectedResult.toJS());
+  });
+
+  it('should set the current song', () => {
+    const current = 0;
+    const songs = [{
+      trackId: 123,
+    }];
+
+    const mockedState = state
+      .set('songs', songs);
+
+    const expectedResult = mockedState
+      .setIn(['currentSong', 'current'], current)
+      .setIn(['currentSong', 'song'], songs[current]);
+
+    expect(appReducer(mockedState, setCurrentSong(current)).toJS())
+      .toEqual(expectedResult.toJS());
+  });
+
+  it('should set the next song', () => {
+    const prev = 0;
+    const next = 1;
+    const songs = [{
+      trackId: 123,
+    }, {
+      trackId: 345,
+    }];
+
+    const mockedState = state
+      .set('songs', songs);
+
+    const expectedResult = mockedState
+      .setIn(['currentSong', 'prev'], prev)
+      .setIn(['currentSong', 'current'], next)
+      .setIn(['currentSong', 'song'], songs[next]);
+
+    expect(appReducer(mockedState, playNext(next)).toJS())
+      .toEqual(expectedResult.toJS());
+  });
+
+  it('should set the previous song', () => {
+    const next = 1;
+    const prev = 0;
+    const songs = [{
+      trackId: 123,
+    }, {
+      trackId: 345,
+    }];
+
+    const mockedState = state
+      .set('songs', songs);
+
+    const expectedResult = mockedState
+      .setIn(['currentSong', 'next'], next)
+      .setIn(['currentSong', 'current'], prev)
+      .setIn(['currentSong', 'song'], songs[prev]);
+
+    expect(appReducer(mockedState, playNext(prev)).toJS())
       .toEqual(expectedResult.toJS());
   });
 });
