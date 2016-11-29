@@ -1,6 +1,9 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 
+import { NextIcon, PreviousIcon, PlayIcon, PauseIcon } from 'MP/components/Icons';
+
+import styles from '../styles.scss';
 import { playNext, playPrevious, playSong, pauseSong } from '../actions';
 import { Player, mapDispatchToProps } from '../index';
 
@@ -27,6 +30,95 @@ describe('<Player />', () => {
     );
 
     expect(renderedComponent.length).toEqual(1);
+  });
+
+  it('should contain className attribute', () => {
+    const className = 'test';
+    props.className = className;
+    const renderedComponent = shallow(
+      <Player {...props} />
+    );
+
+    expect(renderedComponent.hasClass(className)).toEqual(true);
+  });
+
+  it('should display play icon if audio not playing', () => {
+    const renderedComponent = shallow(
+      <Player {...props} />
+    );
+
+    expect(renderedComponent.find(PlayIcon).length).toEqual(1);
+  });
+
+  it('should display pause icon if audio playing', () => {
+    props.playing = true;
+    const renderedComponent = shallow(
+      <Player {...props} />
+    );
+
+    expect(renderedComponent.find(PauseIcon).length).toEqual(1);
+  });
+
+  it('should disable previous and next button if invalid', () => {
+    props.prev = null;
+    props.next = null;
+    const renderedComponent = shallow(
+      <Player {...props} />
+    );
+    const elements = renderedComponent.find(`.${styles.controls} a`);
+
+    expect(elements.first().hasClass(styles.disabled)).toEqual(true);
+    expect(elements.last().hasClass(styles.disabled)).toEqual(true);
+  });
+
+  it('should trigger triggerPrevious when clicked', () => {
+    const renderedComponent = shallow(
+      <Player {...props} />
+    );
+    const elements = renderedComponent.find(`.${styles.controls} a`);
+    elements.first().simulate('click');
+
+    expect(props.triggerPrevious).toHaveBeenCalled();
+  });
+
+  it('should trigger triggerNext when clicked', () => {
+    const renderedComponent = shallow(
+      <Player {...props} />
+    );
+    const elements = renderedComponent.find(`.${styles.controls} a`);
+    elements.last().simulate('click');
+
+    expect(props.triggerNext).toHaveBeenCalled();
+  });
+
+  it('should trigger triggerPlaySong when clicked', () => {
+    const renderedComponent = shallow(
+      <Player {...props} />
+    );
+    const element = renderedComponent.find(`.${styles.player} a`);
+    element.simulate('click');
+
+    expect(props.triggerPlaySong).toHaveBeenCalled();
+  });
+
+  it('should trigger triggerPauseSong when clicked', () => {
+    props.playing = true;
+    const renderedComponent = shallow(
+      <Player {...props} />
+    );
+    const element = renderedComponent.find(`.${styles.player} a`);
+    element.simulate('click');
+
+    expect(props.triggerPauseSong).toHaveBeenCalled();
+  });
+
+  it('should disable play button if audio is not available', () => {
+    props.available = false;
+    const renderedComponent = shallow(
+      <Player {...props} />
+    );
+    const element = renderedComponent.find(`.${styles.player} a`);
+    expect(element.hasClass(styles.disabled)).toEqual(true);
   });
 
   describe('mapDispatchToProps', () => {
