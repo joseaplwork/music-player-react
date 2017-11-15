@@ -13,7 +13,7 @@ module.exports = config => {
   reporters: ['coverage','mocha'],
 
   // browsers to test against, be sure to install the correct karma browser launcher plugin
-  browsers : ['Chrome'],
+  browsers: ['jsdom'],
 
   // karma has its own autoWatch feature but Grunt watch can also do this
   autoWatch: false,
@@ -32,13 +32,6 @@ module.exports = config => {
   webpackMiddleware: {
     noInfo: true,
     stats: 'errors-only',
-  },
-
-  customLaunchers: {
-    ChromeTravis: {
-      base: 'Chrome',
-      flags: ['--no-sandbox'],
-    },
   },
 
   coverageReporter: {

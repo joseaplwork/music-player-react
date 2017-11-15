@@ -9,9 +9,9 @@
     "build": "NODE_ENV=production webpack --config webpack/webpack.build.conf.js",
     "prod": "npm run build && cross-env NODE_ENV=production  node server"
   },
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/joseaplwork/music-player-react"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joseaplwork/music-player-react"
   },
   "keywords": [
     "reactjs",
@@ -83,11 +83,13 @@
     "imports-loader": "0.6.5",
     "ip": "1.1.4",
     "jasmine-core": "2.5.2",
+    "jsdom": "11.3.0",
     "json-loader": "0.5.4",
     "karma": "1.3.0",
     "karma-chrome-launcher": "2.0.0",
     "karma-coverage": "1.1.1",
     "karma-jasmine": "1.0.2",
+    "karma-jsdom-launcher": "6.1.2",
     "karma-mocha-reporter": "2.2.0",
     "karma-sourcemap-loader": "0.3.7",
     "karma-webpack": "1.8.0",
